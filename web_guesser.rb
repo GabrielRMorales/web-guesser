@@ -1,4 +1,8 @@
 require 'sinatra'
-    get '/' do
-      'Put this in your pipe & smoke it!'
+require 'sinatra/reloader'
+    num=rand(101)  
+    get '/' do  
+
+      "The SECRET NUMBER is #{num}"
+
     end

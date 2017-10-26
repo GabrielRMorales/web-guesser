@@ -2,13 +2,14 @@
   <head>
     <style>
       body {
-        background: blue;
+        background: <%= background %>;
       }
     </style>
   </head>
   <body>
     <p>
       <%= message %>
+      <%= guesses %>
     </p>
     <form>
     <label>Number:</label><input type='text' name='guess' />

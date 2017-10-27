@@ -1,7 +1,9 @@
 require 'sinatra'
 require 'sinatra/reloader'
+
   @@number = rand(101)
   @@guesses=5
+  #@@cheat=false
 
   def check_guess(guess)
 
@@ -20,8 +22,13 @@ require 'sinatra/reloader'
       message = "You got it right! The Secret Number is #{@@number}. Generating new number."
     end
     [message, background]
-    #:m => message, :b => background
     
+  end
+
+ def cheat_on()
+    answer = "test"
+    answer = "CHEAT MODE ON" if @@cheat==true
+    answer
   end
 
   def no_more_guesses(message)
@@ -36,10 +43,15 @@ require 'sinatra/reloader'
 
   get '/' do
     guess = params["guess"]
+    @@cheat = params["cheat"]
     message, background = check_guess(guess)
+    answer = cheat_on
     erb :index, :locals =>
      {:message => message,
       :number => @@number,
       :background=> background,
-      :guesses => @@guesses }
+      :guesses => @@guesses,
+      :answer => answer
+       }
   end
+
